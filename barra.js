@@ -21,7 +21,7 @@ class ProgressBar extends HTMLElement
 
     attributeChangedCallback(name, old, now) {
         if (name == 'value') {
-            console.log('cock')
+            this.bar.value = now
         } else if (name == 'max') {
             this.max = now;
         } else if (name == 'min') {
@@ -29,10 +29,15 @@ class ProgressBar extends HTMLElement
         }
     }
 
+    set value(x) {
+        this.bar.setAttribute('value', x)
+        let percent = document.querySelector('span')
+        percent.textContent = " " + x + "%"
+    }
+
     changeValue(newValue) {
         this.bar.value = newValue
-        let percent = document.querySelector('span')
-        percent.textContent = " " + newValue + "%"
+        
     }
 
 }
